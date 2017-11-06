@@ -1,31 +1,36 @@
 # Simpson's Paradox
 
-#rm(list=ls())
-x <- c()
-a <- c()
-b <- c()
-# Generate data
+# Set up vars
+experiment <- c()
+experiment_one <- c()
+experiment_two <- c()
+
+# Generate a series of measurements of interval data in two experiments
+# Experiment one
 for(i in 100:1) {
   n <- i*1.5
-  a <- c(a, n+runif(1,-80,80))
+  experiment_one <- c(experiment_one, n+runif(1,-80,80))
 }
+# Experiment two
 for(i in 300:201) {
   n <- i*1.5
-  b <- c(b, n+runif(1,-80,80))
+  experiment_two <- c(experiment_two, n+runif(1,-80,80))
 }
-x <- c(a,b)
+# Combine the results of both experiments
+experiment <- c(experiment_one,experiment_two)
 
-# Fit and test both
-fitX <- lm(1:length(x)~x);fitX
-cor.test(1:length(x),x)
+# Fit and test combined experiments
+# Result: There is a significant, positive relationship
+fitAll<- lm(1:length(experiment)~experiment);fitAll
+cor.test(1:length(experiment),experiment)
 
-# Fit a and b
-fitA <- lm(1:length(a)~a)
-fitB <- lm(1:length(b)~b)
+# Fit experiment one and two
+fitOne <- lm(1:length(experiment_one)~experiment_one)
+fitTwo <- lm(1:length(experiment_two)~experiment_two)
 
-
-# Plot
-plot(1:length(x)~x)
-abline(fitX, col="blue")
-abline(fitA, col="red")
-abline(fitB$coefficients[1]+100,fitB$coefficients[2], col="red")
+# Plot to show that the positive relationship only exists between the groups, 
+# not within the groups
+plot(1:length(experiment)~experiment)
+abline(fitAll, col="blue")
+abline(fitOne, col="red")
+abline(fitTwo$coefficients[1]+100,fitTwo$coefficients[2], col="red")

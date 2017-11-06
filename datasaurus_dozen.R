@@ -1,6 +1,9 @@
+# Load libraries (install if needed)
 library(ggplot2)
 library(datasauRus)
 
+# Show descriptives for all datasets
+# Result: All datasets are roughly equal
 sets <- names(table(datasaurus_dozen$dataset))
 for(i in sets) {
 set <- i
@@ -14,6 +17,8 @@ cat(paste(set, ":", "\n",
           sep = ''))
 }
 
+# Plot datasets
+# Result: Datasets differ vastly
 ggplot(datasaurus_dozen, aes(x=x, y=y, colour=dataset))+
   geom_point()+
   theme_void()+
