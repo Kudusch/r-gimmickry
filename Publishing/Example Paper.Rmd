@@ -1,0 +1,152 @@
+---
+title             : "Example Paper – How knitr and R Markdown could work for publishing."
+shorttitle        : "Example Paper"
+
+author: 
+  - name          : "Tim Schatto-Eckrodt"
+    affiliation   : "1"
+    corresponding : yes    # Define only one corresponding author
+    address       : "Bispinghof 9-14, 48143 Münster"
+    email         : "tim.schatto-eckrodt@uni-muenster.de"
+  - name          : "Maxima Mustermann"
+    affiliation   : "1,2"
+
+affiliation:
+  - id            : "1"
+    institution   : "Westfälische-Wilhelms Universität Münster"
+  - id            : "2"
+    institution   : "Konstanz Business School"
+
+author_note: |
+  Institut für Kommunikationswissenschaft, Westfälische-Wilhelms Universität Münster
+
+  Department for Musterman, Konstanz Business School
+
+abstract: |
+  Enter abstract here. Each new line herein must be indented, like this line. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et lobortis leo. Integer ut placerat nulla. Maecenas egestas tortor vitae neque laoreet, sit amet pulvinar leo sodales. Cras sed imperdiet diam. Mauris odio nunc, maximus eget elit ut, pellentesque euismod erat. Morbi libero urna, feugiat sit amet luctus sed, tristique ut quam. Vestibulum rutrum consectetur justo, eu convallis nulla convallis nec. Duis vitae vulputate nisl, in ornare lacus. Etiam dignissim nibh vel ornare varius metus. 
+  
+keywords          : "keywords, and, other, words"
+wordcount         : "400"
+
+figsintext        : yes
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+lineno            : no
+mask              : no
+
+class             : "man"
+output            : papaja::apa6_pdf
+---
+
+```{r include = FALSE}
+library("papaja")
+source('/Users/work/Documents/Projekte/Eigene Arbeit/R-Spielereien/Skripte/Publishing/Daten/Bereinigung.R')
+```
+
+
+# Headline 1
+
+We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et lobortis leo. Integer ut placerat nulla. Maecenas egestas tortor vitae neque laoreet, sit amet pulvinar leo sodales. Cras sed imperdiet diam. Mauris odio nunc, maximus eget elit ut, pellentesque euismod erat. Morbi libero urna, feugiat sit amet luctus sed, tristique ut quam. Vestibulum rutrum consectetur justo, eu convallis nulla convallis nec. Duis vitae vulputate nisl, in ornare lacus. Etiam dignissim nibh vel ornare varius metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et lobortis leo. Integer ut placerat nulla. Maecenas egestas tortor vitae neque laoreet, sit amet pulvinar leo sodales. Cras sed imperdiet diam. Mauris odio nunc, maximus eget elit ut, pellentesque euismod erat. Morbi libero urna, feugiat sit amet luctus sed, tristique ut quam. Vestibulum rutrum consectetur justo, eu convallis nulla convallis nec. Duis vitae vulputate nisl, in ornare lacus. Etiam dignissim nibh vel ornare varius metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et lobortis leo. Integer ut placerat nulla. Maecenas egestas tortor vitae neque laoreet, sit amet pulvinar leo sodales. Cras sed imperdiet diam. Mauris odio nunc, maximus eget elit ut, pellentesque euismod erat. Morbi libero urna, feugiat sit amet luctus sed, tristique ut quam. Vestibulum rutrum consectetur justo, eu convallis nulla convallis nec. Duis vitae vulputate nisl, in ornare lacus. Etiam dignissim nibh vel ornare varius metus.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et lobortis leo. Integer ut placerat nulla. Maecenas egestas tortor vitae neque laoreet, sit amet pulvinar leo sodales. Cras sed imperdiet diam. Mauris odio nunc, maximus eget elit ut, pellentesque euismod erat. Morbi libero urna, feugiat sit amet luctus sed, tristique ut quam. Vestibulum rutrum consectetur justo, eu convallis nulla convallis nec. Duis vitae vulputate nisl, in ornare lacus. Etiam dignissim nibh vel ornare varius metus.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et lobortis leo. Integer ut placerat nulla. Maecenas egestas tortor vitae neque laoreet, sit amet pulvinar leo sodales. Cras sed imperdiet diam. Mauris odio nunc, maximus eget elit ut, pellentesque euismod erat. Morbi libero urna, feugiat sit amet luctus sed, tristique ut quam. Vestibulum rutrum consectetur justo, eu convallis nulla convallis nec. Duis vitae vulputate nisl, in ornare lacus. Etiam dignissim nibh vel ornare varius metus.
+
+```{r results = 'asis', echo = F, warning=FALSE, message=FALSE}
+library(tidyr)
+library(dplyr)
+
+descriptives <- data.frame(c(names(c(getLabels('f15')[1], getLabels('f15')[2])), names(c(getLabels('f16')[1], getLabels('f16')[2])), c("Gesamtleitungsrolle", "Teilleitungsrolle","Redakteur(in) bzw. freie(r) Mitarbeiter(in)", "Volontär(in)")),c(round(prop.table(table(JOUR_bereinigt$f15, useNA = 'n'))*100,1),
+  round(prop.table(table(JOUR_bereinigt$f16, useNA = 'n'))*100,1),
+  round(prop.table(table(JOUR_bereinigt$f18, useNA = 'n'))*100,1)))
+names(descriptives) <- c("Anstellungsverhältnis", "%")
+apa_table(
+  descriptives,
+  caption = "Descriptive statistics of age by gender",
+  note = "This table was created with apa_table()",
+  small = T,
+  midrules = c(2,4)
+)
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et lobortis leo. Integer ut placerat nulla. Maecenas egestas tortor vitae neque laoreet, sit amet pulvinar leo sodales. Cras sed imperdiet diam. Mauris odio nunc, maximus eget elit ut, pellentesque euismod erat. Morbi libero urna, feugiat sit amet luctus sed, tristique ut quam. Vestibulum rutrum consectetur justo, eu convallis nulla convallis nec. Duis vitae vulputate nisl, in ornare lacus. Etiam dignissim nibh vel ornare varius metus.
+
+## Subheadline
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et lobortis leo. Integer ut placerat nulla. Maecenas egestas tortor vitae neque laoreet, sit amet pulvinar leo sodales. Cras sed imperdiet diam. Mauris odio nunc, maximus eget elit ut, pellentesque euismod erat. Morbi libero urna, feugiat sit amet luctus sed, tristique ut quam. Vestibulum rutrum consectetur justo, eu convallis nulla convallis nec. Duis vitae vulputate nisl, in ornare lacus. Etiam dignissim nibh vel ornare varius metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et lobortis leo. Integer ut placerat nulla. Maecenas egestas tortor vitae neque laoreet, sit amet pulvinar leo sodales. Cras sed imperdiet diam. Mauris odio nunc, maximus eget elit ut, pellentesque euismod erat. Morbi libero urna, feugiat sit amet luctus sed, tristique ut quam. Vestibulum rutrum consectetur justo, eu convallis nulla convallis nec. Duis vitae vulputate nisl, in ornare lacus. Etiam dignissim nibh vel ornare varius metus. 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et lobortis leo. Integer ut placerat nulla. Maecenas egestas tortor vitae neque laoreet, sit amet pulvinar leo sodales. Cras sed imperdiet diam. Mauris odio nunc, maximus eget elit ut, pellentesque euismod erat. Morbi libero urna, feugiat sit amet luctus sed, tristique ut quam. Vestibulum rutrum consectetur justo, eu convallis nulla convallis nec. Duis vitae vulputate nisl, in ornare lacus. Etiam dignissim nibh vel ornare varius metus. Lorem ipsum dolor sit ame.
+
+# Headline
+
+```{r eval=TRUE, echo=TRUE, fig.cap='A normal distribution'}
+x <- rnorm(1000)
+hist(x)
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et lobortis leo. Integer ut placerat nulla. Maecenas egestas tortor vitae neque laoreet, sit amet pulvinar leo sodales. Cras sed imperdiet diam. Mauris odio nunc, maximus eget elit ut, pellentesque euismod erat. Morbi libero urna, feugiat sit amet luctus sed, tristique ut quam. Vestibulum rutrum consectetur justo, eu convallis nulla convallis nec. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et lobortis leo. Integer ut placerat nulla. Maecenas egestas tortor vitae neque laoreet, sit amet pulvinar leo sodales. Cras sed imperdiet diam. Mauris odio nunc, maximus eget elit ut, pellentesque euismod erat. Morbi libero urna, feugiat sit amet luctus sed, tristique ut quam. Vestibulum rutrum consectetur justo, eu convallis nulla convallis nec. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et lobortis leo. Integer ut placerat nulla. Maecenas egestas tortor vitae neque laoreet, sit amet pulvinar leo sodales. Cras sed imperdiet diam. Mauris odio nunc, maximus eget elit ut, pellentesque euismod erat. Morbi libero urna, feugiat sit amet luctus sed, tristique ut quam. Vestibulum rutrum consectetur justo, eu convallis nulla convallis nec.
+
+# Simpson's Paradox
+
+```{r eval=TRUE, echo=FALSE}
+# Set up vars
+experiment <- c()
+experiment_one <- c()
+experiment_two <- c()
+
+# Generate a series of measurements of interval data in two experiments
+# Experiment one
+for(i in 100:1) {
+  n <- i*1.5
+  experiment_one <- c(experiment_one, n+runif(1,-80,80))
+}
+# Experiment two
+for(i in 300:201) {
+  n <- i*1.5
+  experiment_two <- c(experiment_two, n+runif(1,-80,80))
+}
+# Combine the results of both experiments
+experiment <- c(experiment_one,experiment_two)
+
+# Fit and test combined experiments
+# Result: There is a significant, positive relationship
+fitAll <- lm(1:length(experiment)~experiment)
+#fitAll
+out <- cor.test(1:length(experiment),experiment)
+
+# Fit experiment one and two
+fitOne <- lm(1:length(experiment_one)~experiment_one)
+fitTwo <- lm(1:length(experiment_two)~experiment_two)
+
+# Plot to show that the positive relationship only exists between the groups, 
+# not within the groups
+plot(1:length(experiment)~experiment)
+abline(fitAll, col="blue")
+abline(fitOne, col="red")
+abline(fitTwo$coefficients[1]+100,fitTwo$coefficients[2], col="red")
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et lobortis leo. Integer ut placerat nulla. Maecenas egestas tortor vitae neque laoreet, sit amet pulvinar leo sodales. Cras sed imperdiet diam. Mauris odio nunc, maximus eget elit ut, pellentesque euismod erat. Morbi libero urna, feugiat sit amet luctus sed, tristique ut quam. Vestibulum rutrum consectetur justo, eu convallis nulla convallis nec. Duis vitae vulputate nisl, in ornare lacus. Etiam dignissim nibh vel ornare varius metus. 
+
+
+```{r results = 'asis', echo = F, warning=FALSE, message=FALSE}
+library(tidyr)
+library(dplyr)
+descriptives <- JOUR_bereinigt %>% group_by(as.character(f40b)) %>%
+  summarize(
+    M = mean(f40a, na.rm = T),
+    SD = sd(f40a, na.rm = T),
+    Min = min(f40a, na.rm = T),
+    Max = max(f40a, na.rm = T)
+)
+names(descriptives)[1] <- "Gender"
+descriptives[1] <- names(attr(JOUR_bereinigt$f40b, "labels"))
+apa_table(
+  descriptives
+  , caption = "Descriptive statistics of age by gender"
+  , note = "This table was created with apa_table()"
+)
+```
+
+\newpage
+
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}

@@ -1,0 +1,9 @@
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[htbp]
+\centering
+\includegraphics{Example_Paper_files/figure-latex/unnamed-chunk-1-1.pdf}
+\caption{}
+\end{figure*}
+\efloatseparator
+ 
